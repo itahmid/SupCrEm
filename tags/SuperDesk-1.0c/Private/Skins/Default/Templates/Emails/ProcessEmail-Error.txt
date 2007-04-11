@@ -1,0 +1,13 @@
+Dear [%message.FROM_NAME || message.FROM_EMAIL%],
+
+There was an error with your submission:
+
+[%error%]
+
+Best regards,
+
+[%general.DESK_TITLE%]
+[%system.SCRIPT_URL%]
+------------------------------------------------------------
+Powered by SuperDesk Standard Edition (http://www.plasmapulse.com)
+Copyright 2002 © PlasmaPulse Solutions. All rights reserved.

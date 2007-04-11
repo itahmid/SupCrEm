@@ -1,0 +1,95 @@
+[% sizes = {
+    "1" => "10px",
+    "2" => "13px",
+    "3" => "16px",
+    "4" => "18px"
+  }
+%]
+
+/* body properties */
+body {
+  padding-left    : [%style.BODY_PADD%];
+  padding-right   : [%style.BODY_PADD%];
+  padding-bottom  : [%style.BODY_PADD%];
+  padding-top     : [%style.BODY_PADD%];
+	margin          : [%style.BODY_PADD%];
+  background-image: url([%style.BODY_IMAGE%]);
+  background-color: [%style.BODY_BGCOLOR%];
+  color           : [%style.FONT_COLOR%];
+}
+
+/* link properties */
+a                 { color: [%style.LINK_COLOR%]; }
+a:link            { color: [%style.LINK_COLOR%]; text-decoration: none; }
+a:visited         { color: [%style.LINK_VISITED%]; text-decoration: none; }
+a:hover           { color: [%style.LINK_HOVER%]; text-decoration: underline; }
+a:active          { color: [%style.LINK_ACTIVE%]; text-decoration: underline; }
+
+/* normal table properties */
+table             { }
+table.border      { background-color: [%style.TABLE_BORDER_COLOR%]; }
+
+/* normal font properties */
+font              { font-family: [%style.FONT_FACE%]; }
+font.normal       { color: [%style.FONT_COLOR%]; font-size: [%sizes.${style.FONT_SIZE}%]; }
+font.sub-normal   { color: [%style.FONT_COLOR%]; font-size: [%sizes.${style.FONT_SUB_SIZE}%]; }
+a.normal          { color: [%style.FONT_COLOR%]; }
+a:link.normal     { color: [%style.FONT_COLOR%]; text-decoration: none; }
+a:visited.normal  { color: [%style.FONT_COLOR%]; text-decoration: none; }
+a:hover.normal    { color: [%style.FONT_COLOR%]; text-decoration: underline; }
+a:active.normal   { color: [%style.FONT_COLOR%]; text-decoration: underline; }
+
+/* title properties */
+tr.title          { background-color: [%style.TITLE_BGCOLOR%]; }
+font.title        { color: [%style.TITLE_COLOR%]; font-size: [%sizes.${style.TITLE_SIZE}%]; font-weight: bold; }
+font.sub-title    { color: [%style.TITLE_COLOR%]; font-size: [%sizes.${style.TITLE_SUB_SIZE}%]; }
+
+/* menu properties */
+tr.menu           { background-color: [%style.MENU_BGCOLOR%]; }
+font.menu         { color: [%style.MENU_COLOR%]; font-size: [%sizes.${style.MENU_SIZE}%]; }
+a.menu            { color: [%style.MENU_COLOR%]; }
+a:link.menu       { color: [%style.MENU_COLOR%]; text-decoration: none; }
+a:visited.menu    { color: [%style.MENU_COLOR%]; text-decoration: none; }
+a:hover.menu      { color: [%style.MENU_COLOR%]; text-decoration: underline; }
+a:active.menu     { color: [%style.MENU_COLOR%]; text-decoration: underline; }
+
+/* table large-header properties */
+tr.large-header   { background-color: [%style.LARGE_BGCOLOR%]; }
+font.large-header	{ color: [%style.LARGE_COLOR%]; font-size: [%sizes.${style.LARGE_SIZE}%]; font-weight: bold; }
+
+/* table small-header properties */
+tr.small-header		{ background-color: [%style.SMALL_BGCOLOR%]; }
+font.small-header	{ color: [%style.SMALL_COLOR%]; font-size: [%sizes.${style.SMALL_SIZE}%]; font-weight: bold; }
+
+/* table row properties */
+tr.row            { background-color: [%style.ROW_BGCOLOR%]; }
+font.row          { color: [%style.ROW_COLOR%]; font-size: [%sizes.${style.ROW_SIZE}%]; }
+
+/* table body properties */
+tr.body           { background-color: [%style.TBODY_BGCOLOR%]; }
+font.body         { color: [%style.TBODY_COLOR%]; font-size: [%sizes.${style.TBODY_SIZE}%]; }
+font.sub-body     { color: [%style.TBODY_COLOR%]; font-size: [%sizes.${style.TBODY_SUB_SIZE}%]; }
+font.error-body   { color: [%style.TBODY_ERROR_COLOR%]; font-size: [%sizes.${TBODY_SIZE}%]; }
+a.body            { color: [%style.TBODY_COLOR%]; }
+a:link.body       { color: [%style.TBODY_COLOR%]; text-decoration: none; }
+a:visited.body    { color: [%style.TBODY_COLOR%]; text-decoration: none; }
+a:hover.body      { color: [%style.TBODY_COLOR%]; text-decoration: underline; }
+a:active.body     { color: [%style.TBODY_COLOR%]; text-decoration: underline; }
+
+/* form properties */
+font.subject      { color: [%style.SUBJECT_COLOR%]; font-size: [%sizes.${style.SUBJECT_SIZE}%]; font-weight: bold; }
+font.sub-subject  { color: [%style.SUBJECT_COLOR%]; font-size: [%sizes.${style.SUBJECT_SUB_SIZE}%]; }
+font.help         { color: [%style.HELP_COLOR%]; font-size: [%sizes.${style.HELP_SIZE}%]; }
+font.label        { color: [%style.LABEL_COLOR%]; font-size: [%sizes.${style.LABEL_SIZE}%]; }
+
+font.textbox      { color: [%style.FIELD_COLOR%]; font-size: [%sizes.${style.FIELD_SIZE}%]; }
+font.textarea     { color: [%style.FIELD_COLOR%]; font-size: [%sizes.${style.FIELD_SIZE}%]; }
+font.selectbox    { color: [%style.FIELD_COLOR%]; font-size: [%sizes.${style.FIELD_SIZE}%]; }
+font.checkbox     { color: [%style.FIELD_COLOR%]; font-size: [%sizes.${style.FIELD_SIZE}%]; }
+font.radio        { color: [%style.FIELD_COLOR%]; font-size: [%sizes.${style.FIELD_SIZE}%]; }
+
+input, textarea, select	{ font-family: [%style.FORM_FONT%]; color: [%style.FORM_COLOR%]; font-size: [%sizes.${style.FORM_SIZE}%]; }
+
+input.textbox     { width: [%style.FORM_WIDTH%]; background-color: [%style.FORM_BGCOLOR%]; }
+textarea.textarea { width: [%style.FORM_WIDTH%]; background-color: [%style.FORM_BGCOLOR%]; }
+select.selectbox  { width: [%style.FORM_WIDTH%]; background-color: [%style.FORM_BGCOLOR%]; }

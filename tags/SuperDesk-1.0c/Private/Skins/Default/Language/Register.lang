@@ -1,0 +1,42 @@
+###############################################################################
+# SuperDesk                                                                   #
+# Written by Gregory Nolle (greg@nolle.co.uk)                                 #
+# Copyright 2002 by PlasmaPulse Solutions (http://www.plasmapulse.com)        #
+###############################################################################
+# Skins/Language/Register.lang -> Register language module                    #
+###############################################################################
+# DON'T EDIT BELOW UNLESS YOU KNOW WHAT YOU'RE DOING!                         #
+###############################################################################
+package Language::Register;
+
+require Exporter;
+
+@ISA       = qw(Exporter);
+@EXPORT    = qw(@EXPORT_OK);
+@EXPORT_OK = qw($LANGUAGE);
+
+use strict;
+use vars qw($LANGUAGE);
+
+$LANGUAGE = {
+  "MISSING" => {
+    "USERNAME"    => qq~<li>You didn't fill in the "Username" field.~,
+    "PASSWORD"    => qq~<li>You didn't fill in the "Password" field.~,
+    "PASSWORD2"   => qq~<li>You didn't fill in the "Verify Password" field.~,
+    "NAME"        => qq~<li>You didn't fill in the "Namet" field.~,
+    "EMAIL"       => qq~<li>You didn't fill in the "Email" field.~
+  },
+  "TOOLONG" => {
+    "USERNAME"    => qq~<li>The Username must be 48 characters or less.~,
+    "PASSWORD"    => qq~<li>The Password must be 64 characters or less.~,
+    "NAME"        => qq~<li>The Name must be 128 characters or less.~,
+    "EMAIL"       => qq~<li>The Email must be 128 characters or less.~,
+    "URL"         => qq~<li>The Website URL must be 256 characters or less.~
+  },
+  "INVALID" => {
+    "PASSWORD"    => qq~<li>The passwords you entered do not match.~
+  },
+  "ERROR"   => qq~<font class="error-body">There were errors:<ul>[%error%]</ul></font>~
+};
+
+1;

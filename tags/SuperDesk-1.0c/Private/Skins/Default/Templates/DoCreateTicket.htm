@@ -1,0 +1,78 @@
+[%WRAPPER Interface/Page.htm
+  title = "Create Ticket",
+  redirect = "${system.SCRIPT_URL}?action=ModifyTicket&TID=${record.TID}&SID=${user.session.ID}"%]
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+  <tr>
+    <td width="100%"><font class="normal"><b><a href="[%system.SCRIPT_URL%]?SID=[%user.session.ID%]" class="normal">Index</a> /</b></font></td>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="1" width="[%style.TABLE_WIDTH%]" class="border">
+  <tr>
+    <td width="100%">
+      <table border="0" cellpadding="[%style.TABLE_PADD%]" cellspacing="[%style.TABLE_SPAC%]" width="100%">
+        <tr class="large-header">
+          <td width="100%"><font class="large-header">Create Ticket</font></td>
+        </tr>
+        <tr class="body">
+          <td width="100%">
+            <table border="0" cellpadding="3" cellspacing="1" width="100%">
+              <tr>
+                <td colspan="2"><font class="body">The following ticket has been created:</font></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">ID</font></td>
+                <td width="100%"><font class="textbox">[%record.TID%]</font></td>
+              </tr>
+            [%UNLESS user.account.USERNAME%]
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Name</font></td>
+                <td width="100%"><font class="textbox">[%record.GUEST_NAME%]</font></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Email</font></td>
+                <td width="100%"><font class="textbox">[%record.EMAIL%]</font></td>
+              </tr>
+            [%END%]            
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Subject</font></td>
+                <td width="100%"><font class="textbox">[%record.SUBJECT%]</font></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Category</font></td>
+                <td width="100%"><font class="textbox">[%category.NAME%]</font></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Priority</font></td>
+                <td width="100%"><font class="textbox">[%general.PRIORITIES.${record.PRIORITY}%]</font></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Severity</font></td>
+                <td width="100%"><font class="textbox">[%general.SEVERITIES.${record.SEVERITY}%]</font></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Status</font></td>
+                <td width="100%"><font class="textbox">[%general.STATUS.${record.STATUS}%]</font></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Message</font></td>
+                <td width="100%"><font class="textbox">[%record.MESSAGE | replace('\n', '<br>')%]</font></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Attachment</font></td>
+                <td width="100%"><font class="textbox">[%record.ATTACHMENTS%]</font></td>
+              </tr>
+              <tr>
+                <td colspan="2">&nbsp;</td>
+              </tr>
+              <tr>
+                <td colspan="2"><font class="body"><a href="[%system.SCRIPT_URL%]?action=ModifyTicket&TID=[%record.TID%]&SID=[%user.session.ID%]">Back to Ticket</a><br>
+                  <a href="[%system.SCRIPT_URL%]?SID=[%user.session.ID%]">Back to Index</a></font></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+[%END%]

@@ -1,0 +1,29 @@
+Dear [%account.NAME || ticket.GUEST_NAME || ticket.EMAIL%],
+
+A note has been added to your query at the help desk. Here are its details:
+
+------------------------------------------------------------
+Category: [%category.NAME%]
+Date: [%record.CREATE_DATE%]
+Time: [%record.CREATE_TIME%]
+Subject: [%record.SUBJECT%]
+Priority: [%general.PRIORITIES.${ticket.PRIORITY}%]
+Severity: [%general.SEVERITIES.${ticket.SEVERITY}%]
+Status: [%general.STATUS.${ticket.STATUS}%]
+------------------------------------------------------------
+[%IF record.AUTHOR_TYPE == "STAFF" -%]
+Author: [%staffaccount.NAME%]
+------------------------------------------------------------
+[%END -%]
+[%record.MESSAGE%]
+------------------------------------------------------------
+
+If you have an account with the help desk, then you can log in to the URL below and add to, modify or delete this ticket.
+
+Best regards,
+
+[%general.DESK_TITLE%]
+[%system.SCRIPT_URL%]
+------------------------------------------------------------
+Powered by SuperDesk Standard Edition (http://www.plasmapulse.com)
+Copyright 2002 © PlasmaPulse Solutions. All rights reserved.

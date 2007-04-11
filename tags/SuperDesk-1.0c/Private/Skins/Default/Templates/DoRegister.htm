@@ -1,0 +1,57 @@
+[%WRAPPER Interface/Page.htm
+  title = "Register",
+  redirect = "${system.SCRIPT_URL}"%]
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+  <tr>
+    <td width="100%"><font class="normal"><b><a href="[%system.SCRIPT_URL%]" class="normal">Index</a> /</b></font></td>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="1" width="[%style.TABLE_WIDTH%]" class="border">
+  <tr>
+    <td width="100%">
+      <table border="0" cellpadding="[%style.TABLE_PADD%]" cellspacing="[%style.TABLE_SPAC%]" width="100%">
+        <tr class="large-header">
+          <td width="100%"><font class="large-header">Register</font></td>
+        </tr>
+        <tr class="body">
+          <td width="100%">
+            <table border="0" cellpadding="3" cellspacing="1" width="100%">
+              <tr>
+                <td colspan="2"><font class="body">Your account has been created:</font></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Username</font></td>
+                <td width="100%"><font class="textbox">[%record.USERNAME%]</font></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Name</font></td>
+                <td width="100%"><font class="textbox">[%record.NAME%]</font></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Email</font></td>
+                <td width="100%"><font class="textbox">[%record.EMAIL%]</font></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Other Email Addresses</font></td>
+                [%SET otheremails = record.OTHER_EMAILS.split('\|')%]
+                [%otheremails.shift%]
+                <td width="100%"><font class="textbox">[%otheremails.join("<br>")%]</font></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Website URL</font></td>
+                <td width="100%"><font class="textbox">[%record.URL%]</font></td>
+              </tr>
+              <tr>
+                <td colspan="2">&nbsp;</td>
+              </tr>
+              <tr>
+                <td colspan="2"><font class="body"><a href="[%system.SCRIPT_URL%]">Back to Index</a></font></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+[%END%]

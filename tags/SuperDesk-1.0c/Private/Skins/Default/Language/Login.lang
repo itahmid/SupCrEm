@@ -1,0 +1,29 @@
+###############################################################################
+# SuperDesk                                                                   #
+# Written by Gregory Nolle (greg@nolle.co.uk)                                 #
+# Copyright 2002 by PlasmaPulse Solutions (http://www.plasmapulse.com)        #
+###############################################################################
+# Skins/Language/Login.lang -> Login language module                          #
+###############################################################################
+# DON'T EDIT BELOW UNLESS YOU KNOW WHAT YOU'RE DOING!                         #
+###############################################################################
+package Language::Login;
+
+require Exporter;
+
+@ISA       = qw(Exporter);
+@EXPORT    = qw(@EXPORT_OK);
+@EXPORT_OK = qw($LANGUAGE);
+
+use strict;
+use vars qw($LANGUAGE);
+
+$LANGUAGE = {
+  "INVALID" => {
+    "Username"      => qq~<li>The Username you entered is invalid.~,
+    "Password"      => qq~<li>The Password you entered is invalid.~,
+  },
+  "ERROR"   => qq~<font class="error-body">There were errors:<ul>[%error%]</ul></font>~
+};
+
+1;
