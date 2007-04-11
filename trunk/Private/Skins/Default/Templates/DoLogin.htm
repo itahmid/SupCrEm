@@ -1,0 +1,30 @@
+[%IF form.REFERER;
+    redirect = "${system.SCRIPT_URL}?action=${form.REFERER}&SID=${user.session.ID}";
+  ELSE;
+    redirect = "${system.SCRIPT_URL}?SID=${user.session.ID}";
+  END%]
+[%WRAPPER Interface/Page.htm
+  title = "Login",
+  redirect = redirect%]
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+  <tr>
+    <td width="100%"><font class="normal"><b><a href="[%system.SCRIPT_URL%]?SID=[%user.session.ID%]" class="normal">Index</a> /</b></font></td>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="1" width="[%style.TABLE_WIDTH%]" class="border"><form method="POST" action="[%system.SCRIPT_URL%]"><input type="hidden" name="action" value="DoLogin"><input type="hidden" name="REFERER" value="[%UNLESS form.action == "Login"%][%form.action%][%END%]">
+  <tr>
+    <td width="100%">
+      <table border="0" cellpadding="[%style.TABLE_PADD%]" cellspacing="[%style.TABLE_SPAC%]" width="100%">
+        <tr class="large-header">
+          <td width="100%"><font class="large-header">Login</font></td>
+        </tr>
+        <tr class="body">
+          <td width="100%"><font class="body">You have been logged in.
+            <p><a href="[%system.SCRIPT_URL%]?SID=[%user.session.ID%][%IF form.REFERER%]&action=[%form.REFERER%][%END%]">Continue</a></font></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td></form></td></tr></table>
+[%END%]

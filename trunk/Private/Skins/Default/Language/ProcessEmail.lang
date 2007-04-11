@@ -1,0 +1,41 @@
+###############################################################################
+# SuperDesk                                                                   #
+# Written by Gregory Nolle (greg@nolle.co.uk)                                 #
+# Copyright 2002 by PlasmaPulse Solutions (http://www.plasmapulse.com)        #
+###############################################################################
+# Skins/Language/ProcessEmail.lang -> ProcessEmail language module            #
+###############################################################################
+# DON'T EDIT BELOW UNLESS YOU KNOW WHAT YOU'RE DOING!                         #
+###############################################################################
+package Language::ProcessEmail;
+
+require Exporter;
+
+@ISA       = qw(Exporter);
+@EXPORT    = qw(@EXPORT_OK);
+@EXPORT_OK = qw($LANGUAGE);
+
+use strict;
+use vars qw($LANGUAGE);
+
+$LANGUAGE = {
+  "MISSING" => {
+    "SUBJECT"       => qq~You didn't provide a subject for your email.~
+  },
+  "INVALID" => {
+    "FROM"          => qq~The help desk requires users to be registered and your email address wasn't recognised as a registered member.~,
+    "TICKET_ID"     => qq~The ticket ID that you specified was not found.~,
+    "ACCOUNT"       => qq~You don't appear to be the author of the ticket you are trying to add to.~,
+    "EMAIL"         => qq~You don't appear to be the author of the ticket you are trying to add to. Perhaps you are using a different email address from that which you created the ticket.~,
+    "TO"            => qq~The email address you sent your email to has not been attached to a category within the help desk.~
+  },
+  "TICKET-CLOSED" => qq~The ticket you are trying to add to has been closed.~,
+
+  "ERROR"   => qq~[%error%]~,
+
+  "STAFFEMAILSUBJECT-TICKET"      => qq~New ticket at [%general.DESK_TITLE%] - [%record.SUBJECT%]~,
+  "STAFFEMAILSUBJECT-OWNEDNOTE"   => qq~New note at [%general.DESK_TITLE%] - [%record.SUBJECT%]~,
+  "STAFFEMAILSUBJECT-UNOWNEDNOTE" => qq~New note at [%general.DESK_TITLE%] - [%record.SUBJECT%]~
+};
+
+1;
