@@ -1,0 +1,187 @@
+[%WRAPPER Interface/Page.htm
+  title = "View/Modify Ticket"%]
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+  <tr>
+    <td width="100%"><font class="normal"><b><a href="[%system.SCRIPT_URL%]?SID=[%user.session.ID%]" class="normal">Index</a> /
+    [%IF ticket.STATUS >= 60%]
+      <a href="[%system.SCRIPT_URL%]?action=ResolvedTickets&SID=[%user.session.ID%]" class="normal">Resolved Tickets</a> /
+    [%ELSE%]
+      <a href="[%system.SCRIPT_URL%]?SID=[%user.session.ID%]" class="normal">Unresolved Tickets</a> /
+    [%END%]
+      </b></font></td>
+  </tr>
+</table>
+<script language="JavaScript">
+  <!--
+  function Reply(author, message) {
+    var lines = message.split("\n");
+    var field = form.FORM_NOTE_MESSAGE;
+
+    field.value = author + " wrote\n";
+    for (var h = 0; h <= lines.length - 1; h++) {
+      field.value = field.value + "> " + lines[h] + "\n";
+    }
+    field.value = field.value + "\n";
+    field.focus();
+    
+    if (field.createTextRange) {
+      var r = field.createTextRange();
+      r.moveStart('character', field.value.length);
+      r.collapse();
+      r.select();
+    }
+  }
+  //-->
+</script>
+<table border="0" cellpadding="0" cellspacing="1" width="[%style.TABLE_WIDTH%]" class="border"><form method="POST" name="form" action="[%system.SCRIPT_URL%]" enctype="multipart/form-data"><input type="hidden" name="action" value="DoModifyTicket"><input type="hidden" name="FORM_NOTE" value=""><input type="hidden" name="TID" value="[%ticket.ID%]"><input type="hidden" name="SID" value="[%user.session.ID%]">
+  <tr>
+    <td width="100%">
+      <table border="0" cellpadding="[%style.TABLE_PADD%]" cellspacing="[%style.TABLE_SPAC%]" width="100%">
+        <tr class="large-header">
+          <td width="100%"><font class="large-header">View/Modify Ticket</font></td>
+        </tr>
+        <tr class="body">
+          <td width="100%">
+            <table border="0" cellpadding="2" cellspacing="1" width="100%" class="border">
+              <tr class="small-header">
+                <td><font class="small-header">ticket information</font></td>
+              </tr>
+              <tr class="body">
+                <td width="100%">
+                  <table border="0" cellpadding="4" cellspacing="1" width="100%">
+                  [%IF error%]
+                    <tr>
+                      <td colspan="2"><font class="body">[%error%]</font></td>
+                    </tr>
+                  [%END%]
+                    <tr>
+                      <td width="200" valign="top" nowrap><font class="subject">ID</font></td>
+                      <td width="100%"><font class="textbox">[%ticket.ID%]</font></td>
+                    </tr>
+                    <tr>
+                      <td width="200" valign="top" nowrap><font class="subject">Subject</font></td>
+                      <td width="100%"><input type="text" name="FORM_SUBJECT" value="[%form.FORM_SUBJECT || ticket.SUBJECT%]" class="textbox"></td>
+                    </tr>
+                    <tr>
+                      <td width="200" valign="top" nowrap><font class="subject">Category</font></td>
+                      <td width="100%"><select name="FORM_CATEGORY" class="selectbox">
+                      [%SET Category = form.FORM_CATEGORY || ticket.CATEGORY%]
+                      [%FOREACH category = categories%]
+                        <option value="[%category.ID%]"[%IF category.ID == Category%] selected[%END%]>[%category.NAME%]</option>
+                      [%END%]
+                        </select></td>
+                    </tr>
+                    <tr>
+                      <td width="200" valign="top" nowrap><font class="subject">Priority</font></td>
+                      <td width="100%"><select name="FORM_PRIORITY" class="selectbox">
+                      [%SET Priority = form.FORM_PRIORITY || ticket.PRIORITY%]
+                        <option value="30"[%IF Priority == 30%] selected[%END%]>[%general.PRIORITIES.30%]</option>
+                        <option value="40"[%IF Priority == 40%] selected[%END%]>[%general.PRIORITIES.40%]</option>
+                        <option value="50"[%IF Priority == 50%] selected[%END%]>[%general.PRIORITIES.50%]</option>
+                        <option value="60"[%IF Priority == 60%] selected[%END%]>[%general.PRIORITIES.60%]</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                      <td width="200" valign="top" nowrap><font class="subject">Severity</font></td>
+                      <td width="100%"><select name="FORM_SEVERITY" class="selectbox">
+                      [%SET Severity = form.FORM_SEVERITY || ticket.SEVERITY%]
+                        <option value="30"[%IF Severity == 30%] selected[%END%]>[%general.SEVERITIES.30%]</option>
+                        <option value="40"[%IF Severity == 40%] selected[%END%]>[%general.SEVERITIES.40%]</option>
+                        <option value="50"[%IF Severity == 50%] selected[%END%]>[%general.SEVERITIES.50%]</option>
+                        <option value="60"[%IF Severity == 60%] selected[%END%]>[%general.SEVERITIES.60%]</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                      <td width="200" valign="top" nowrap><font class="subject">Status</font></td>
+                      <td width="100%"><select name="FORM_STATUS" class="selectbox">
+                      [%SET Status = form.FORM_STATUS || ticket.STATUS%]
+                        [%IF ticket.STATUS == 30%]<option value="30"[%IF Status == 30%] selected[%END%]>[%general.STATUS.30%]</option>[%END%]
+                        [%IF ticket.STATUS <= 40%]<option value="40"[%IF Status == 40%] selected[%END%]>[%general.STATUS.40%]</option>[%END%]
+                        [%IF ticket.STATUS <= 50%]<option value="50"[%IF Status == 50%] selected[%END%]>[%general.STATUS.50%]</option>[%END%]
+                        [%IF ticket.STATUS <= 60%]<option value="60"[%IF Status == 60%] selected[%END%]>[%general.STATUS.60%]</option>[%END%]
+                        [%IF ticket.STATUS <= 70%]<option value="70"[%IF Status == 70%] selected[%END%]>[%general.STATUS.70%]</option>[%END%]
+                        </select></td>
+                    </tr>
+                    <tr>
+                      <td width="200" valign="top" nowrap><font class="subject">Created</font></td>
+                      <td width="100%"><font class="textbox">[%ticket.CREATE_DATE%] at [%ticket.CREATE_TIME%]</font></td>
+                    </tr>
+                    <tr>
+                      <td width="200" valign="top" nowrap><font class="subject">Last Updated</font></td>
+                      <td width="100%"><font class="textbox">[%ticket.UPDATE_DATE%] at [%ticket.UPDATE_TIME%]</font></td>
+                    </tr>
+                    <tr>
+                      <td width="200" nowrap></td>
+                      <td width="100%"><input type="submit" value="Modify"> <input type="reset" value="Cancel"></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr class="small-header">
+                <td><font class="small-header">notes</font></td>
+              </tr>
+            [%FOREACH note = notes%]
+              <tr class="body">
+                <td width="100%">
+                  <table border="0" cellpadding="3" cellspacing="1" width="100%">
+                    <tr>
+                      <td width="200" nowrap valign="top"><font class="subject">[%note.author.NAME%] [%IF note.AUTHOR_TYPE == "STAFF"%]<img src="http://www.obsidian-scripts.com/images/offsite/admin.gif" border="0">[%END%]</font><br>
+                        <font class="sub-subject">[%note.CREATE_DATE%] at [%note.CREATE_TIME%]
+                    [%IF note.ATTACHMENTS%]
+                        <p><b>Attachments:</b><br>
+                      [%FOREACH attachment = note.ATTACHMENTS.split(',')%]
+                        <a href="[%system.PUBLIC_URL%]/Attachments/[%note.ID%]/[%attachment%]" target="_blank">[%attachment%]</a><br>
+                      [%END%]
+                    [%END%]
+                        <p>
+                        [%IF note.AUTHOR_TYPE == "USER"%]<a href="[%system.SCRIPT_URL%]?action=ModifyNote&NID=[%note.ID%]&SID=[%user.session.ID%]">EDIT</a> |[%END%]
+                        <a href="javascript:Reply('[%note.author.NAME%]', '[%note.MESSAGE | replace('\n', '\\n') | replace('&', '\&')%]')">REPLY</a></font></td>
+                      <td width="100%" valign="top"><font class="textbox"><b>[%note.SUBJECT%]</b>
+                      [%SET html = 0%][%FOREACH attachment = note.ATTACHMENTS.split(',')%][%SET html = 1 IF attachment == "message.html"%][%END%]
+                      [%IF html && general.SHOW_HTML_MESSAGE%]
+                        <br><iframe src="[%system.PUBLIC_URL%]/Attachments/[%note.ID%]/message.html" rows="10" marginwidth="2" marginheight="2" style="width: 100%"></iframe>
+                      [%ELSE%]
+                        <p>[%note.MESSAGE | replace('\n', '<br>')%]
+                      [%END%]
+                        </font></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            [%END%]
+              <tr class="small-header">
+                <td><font class="small-header">add note</font></td>
+              </tr>
+              <tr class="body">
+                <td width="100%">
+                  <table border="0" cellpadding="2" cellspacing="0" width="100%">
+                    <tr>
+                      <td width="200" valign="top" nowrap><font class="subject">Subject</font></td>
+                      <td width="100%"><input type="text" name="FORM_NOTE_SUBJECT" value="[%form.FORM_NOTE_SUBJECT || ticket.SUBJECT%]" class="textbox"></td>
+                    </tr>
+                    <tr>
+                      <td width="200" valign="top" nowrap><font class="subject">Message</font></td>
+                      <td width="100%"><textarea name="FORM_NOTE_MESSAGE" rows="10" class="textarea">[%form.FORM_NOTE_MESSAGE%]</textarea></td>
+                    </tr>
+                  [%IF general.USER_ATTACHMENTS%]
+                    <tr>
+                      <td width="200" valign="top" nowrap><font class="subject">Attachment</font></td>
+                      <td width="100%"><input type="file" name="FORM_NOTE_ATTACHMENT" class="textbox"></td>
+                    </tr>
+                  [%END%]
+                    <tr>
+                      <td width="200" nowrap></td>
+                      <td width="100%"><input type="submit" value="Add" onClick="form.FORM_NOTE.value = '1';"> <input type="reset" value="Cancel"></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td></form></td></tr></table>
+[%END%]

@@ -1,0 +1,19 @@
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+  <tr>
+    <td><font class="menu">
+      <a href="[%system.SCRIPT_URL%]?SID=[%user.session.ID%]" class="menu">Home</a> |
+    [%IF user%]
+      <a href="[%system.SCRIPT_URL%]?action=Logout" class="menu">Logout ([%user.account.USERNAME%])</a> |
+    [%ELSE%]
+      <a href="[%system.SCRIPT_URL%]?action=Login" class="menu">Login</a> |
+      <a href="[%system.SCRIPT_URL%]?action=Register" class="menu">Register</a> |
+    [%END%]
+      <a href="[%system.SCRIPT_URL%]?action=CreateTicket&SID=[%user.session.ID%]" class="menu">Create a Ticket</a>
+    [%IF user%]
+      | <a href="[%system.SCRIPT_URL%]?action=ResolvedTickets&SID=[%user.session.ID%]" class="menu">Resolved Tickets</a> |
+      <a href="[%system.SCRIPT_URL%]?action=ModifyAccount&SID=[%user.session.ID%]" class="menu">Modify Account</a>
+    [%END%]
+      </font></td>
+    <td align="right"><font class="menu"><a href="[%general.SITE_URL%]" class="menu">back to [%general.SITE_TITLE%]</a></font></td>
+  </tr>
+</table>

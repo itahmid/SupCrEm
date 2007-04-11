@@ -1,0 +1,37 @@
+###############################################################################
+# SuperDesk                                                                   #
+# Written by Gregory Nolle (greg@nolle.co.uk)                                 #
+# Copyright 2002 by PlasmaPulse Solutions (http://www.plasmapulse.com)        #
+###############################################################################
+# Skins/Language/ModifyNote.lang -> ModifyNote language module                #
+###############################################################################
+# DON'T EDIT BELOW UNLESS YOU KNOW WHAT YOU'RE DOING!                         #
+###############################################################################
+package Language::ModifyNote;
+
+BEGIN { require "General.pm.pl"; import General qw($GENERAL); }
+
+require Exporter;
+
+@ISA       = qw(Exporter);
+@EXPORT    = qw(@EXPORT_OK);
+@EXPORT_OK = qw($LANGUAGE);
+
+use strict;
+use vars qw($LANGUAGE);
+
+$LANGUAGE = {
+  "MISSING" => {
+    "SUBJECT"       => qq~<li>You didn't fill in the "Subject" field.~,
+    "MESSAGE"       => qq~<li>You didn't fill in the "Message" field.~
+  },
+  "INVALID" => {
+    "ATTACHMENT"    => qq~<li>The Attachment you specified is invalid. The file must not be larger than $GENERAL->{'MAX_ATTACHMENT_SIZE'}KB and it must have one of these extensions: ~.join(", ", @{ $GENERAL->{'ATTACHMENT_EXTS'} })
+  },
+  "TOOLONG" => {
+    "SUBJECT"       => qq~<li>The Subject must be 512 characters or less.~
+  },
+  "ERROR"   => qq~<font class="error-body">There were errors:<ul>[%error%]</ul></font>~
+};
+
+1;

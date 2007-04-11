@@ -1,0 +1,36 @@
+[%WRAPPER Interface/Page.htm%]
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+  <tr>
+    <td width="100%"><font class="normal"><b><a href="[%system.SCRIPT_URL%]?SID=[%user.session.ID%]" class="normal">Index</a> /</b></font></td>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="1" width="[%style.TABLE_WIDTH%]" class="border">
+  <tr>
+    <td width="100%">
+      <table border="0" cellpadding="[%style.TABLE_PADD%]" cellspacing="[%style.TABLE_SPAC%]" width="100%">
+        <tr class="small-header">
+          <td width="1" nowrap><font class="small-header">id</font></td>
+          <td width="100%"><font class="small-header">subject</font></td>
+          <td width="100" nowrap><font class="small-header">status</font></td>
+          <td width="100" nowrap><font class="small-header">priority</font></td>
+          <td width="200" nowrap><font class="small-header">category</font></td>
+          <td width="200" nowrap><font class="small-header">creation date</font></td>
+        </tr>
+        <tr class="large-header">
+          <td width="100%" colspan="6"><font class="large-header">Unresolved Tickets</font></td>
+        </tr>
+      [%FOREACH ticket = tickets -%]
+        <tr class="row">
+          <td><font class="row">[%ticket.ID%]</font></td>
+          <td><font class="row"><a href="[%system.SCRIPT_URL%]?action=ModifyTicket&TID=[%ticket.ID%]&SID=[%user.session.ID%]"><b>[%ticket.SUBJECT%]</b></a></td>
+          <td><font class="row">[%general.STATUS.${ticket.STATUS}%]</font></td>
+          <td><font class="row">[%general.PRIORITIES.${ticket.PRIORITY}%]</font></td>
+          <td><font class="row">[%ticket.category.NAME%]</font></td>
+          <td><font class="row">[%ticket.CREATE_DATE%] at [%ticket.CREATE_TIME%]</font></td>
+        </tr>
+      [%END%]
+      </table>
+    </td>
+  </tr>
+</table>
+[%END%]

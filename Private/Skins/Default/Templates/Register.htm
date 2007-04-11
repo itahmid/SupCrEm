@@ -1,0 +1,86 @@
+[%WRAPPER Interface/Page.htm
+  title = "Register"%]
+<script language="JavaScript">
+  <!--
+  function OTHER_EMAILS_AddOption(f) {
+    var filter = f.FORM_OTHER_EMAILS;
+    var item = f.ITEM_OTHER_EMAILS;
+
+    if (item.value != "") {
+      if (filter.value != "") {
+        filter.value = filter.value + item.value + "|";
+      } else {
+        filter.value = "|" + item.value + "|";
+      }
+    }
+    item.value = "";
+  }
+  //-->
+</script>
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+  <tr>
+    <td width="100%"><font class="normal"><b><a href="[%system.SCRIPT_URL%]" class="normal">Index</a> /</b></font></td>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="1" width="[%style.TABLE_WIDTH%]" class="border"><form method="POST" name="form" action="[%system.SCRIPT_URL%]"><input type="hidden" name="action" value="DoRegister">
+  <tr>
+    <td width="100%">
+      <table border="0" cellpadding="[%style.TABLE_PADD%]" cellspacing="[%style.TABLE_SPAC%]" width="100%">
+        <tr class="large-header">
+          <td width="100%"><font class="large-header">Register</font></td>
+        </tr>
+        <tr class="body">
+          <td width="100%">
+            <table border="0" cellpadding="4" cellspacing="1" width="100%">
+              <tr>
+                <td colspan="2"><font class="body">Please fill in all of the required (<font class="required">*</font>) fields.[%IF error%]<p>[%error%][%END%]</font></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Username</font> <font class="required">*</font></td>
+                <td width="100%"><input type="text" name="FORM_USERNAME" value="[%form.FORM_USERNAME%]" class="textbox"></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Password</font> <font class="required">*</font></td>
+                <td width="100%"><input type="password" name="FORM_PASSWORD" value="[%form.FORM_PASSWORD%]" class="textbox"></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Verify Password</font> <font class="required">*</font></td>
+                <td width="100%"><input type="password" name="FORM_PASSWORD2" value="[%form.FORM_PASSWORD2%]" class="textbox"></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Name</font> <font class="required">*</font></td>
+                <td width="100%"><input type="text" name="FORM_NAME" value="[%form.FORM_NAME%]" class="textbox"></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Email</font> <font class="required">*</font></td>
+                <td width="100%"><input type="text" name="FORM_EMAIL" value="[%form.FORM_EMAIL%]" class="textbox"></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Other Email Addresses</font></td>
+                <td width="100%"><textarea name="FORM_OTHER_EMAILS" rows="3" class="textarea">[%form.FORM_OTHER_EMAILS%]</textarea><br>
+                  <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <tr>
+                      <td width="100%"><input type="text" name="ITEM_OTHER_EMAILS" class="textbox"></td>
+                      <td width="5" nowrap></td>
+                      <td width="1" nowrap><input type="button" value="Add" onClick="OTHER_EMAILS_AddOption(form)"></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Website URL</font></td>
+                <td width="100%"><input type="text" name="FORM_URL" value="[%form.FORM_URL%]" class="textbox"></td>
+              </tr>
+              <tr>
+                <td width="200" nowrap></td>
+                <td width="100%"><input type="submit" value="Register"> <input type="reset" value="Cancel"></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td></form></td></tr></table>
+[%END%]

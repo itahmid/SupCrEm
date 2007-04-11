@@ -1,0 +1,102 @@
+[%WRAPPER Interface/Page.htm
+  title = "Create Ticket"%]
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+  <tr>
+    <td width="100%"><font class="normal"><b><a href="[%system.SCRIPT_URL%]?SID=[%user.session.ID%]" class="normal">Index</a> /</b></font></td>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="1" width="[%style.TABLE_WIDTH%]" class="border"><form method="POST" name="form" action="[%system.SCRIPT_URL%]" enctype="multipart/form-data"><input type="hidden" name="action" value="DoCreateTicket"><input type="hidden" name="SID" value="[%user.session.ID%]">
+  <tr>
+    <td width="100%">
+      <table border="0" cellpadding="[%style.TABLE_PADD%]" cellspacing="[%style.TABLE_SPAC%]" width="100%">
+        <tr class="large-header">
+          <td width="100%"><font class="large-header">Create Ticket</font></td>
+        </tr>
+        <tr class="body">
+          <td width="100%">
+            <table border="0" cellpadding="4" cellspacing="1" width="100%">
+              <tr>
+                <td colspan="2"><font class="body">Please fill in all of the required (<font class="required">*</font>) fields.</font></td>
+              </tr>
+            [%IF error%]
+              <tr>
+                <td colspan="2"><font class="body">[%error%]</font></td>
+              </tr>
+            [%END%]
+            [%UNLESS user.account.USERNAME%]
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Name</font></td>
+                <td width="100%"><input type="text" name="FORM_GUEST_NAME" value="[%form.FORM_GUEST_NAME%]" class="textbox"></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Email</font> <font class="required">*</font></td>
+                <td width="100%"><input type="text" name="FORM_EMAIL" value="[%form.FORM_EMAIL%]" class="textbox"></td>
+              </tr>
+            [%END%]
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Subject</font> <font class="required">*</font></td>
+                <td width="100%"><input type="text" name="FORM_SUBJECT" value="[%form.FORM_SUBJECT%]" class="textbox"></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Category</font> <font class="required">*</font></td>
+                <td width="100%"><select name="FORM_CATEGORY" class="selectbox">
+                [%SET Category = form.FORM_CATEGORY%]
+                [%FOREACH category = categories%]
+                  <option value="[%category.ID%]"[%IF category.ID == Category%] selected[%END%]>[%category.NAME%]</option>
+                [%END%]
+                  </select></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Priority</font> <font class="required">*</font></td>
+                <td width="100%"><select name="FORM_PRIORITY" class="selectbox">
+                [%SET Priority = form.FORM_PRIORITY%]
+                  <option value="30"[%IF Priority == 30%] selected[%END%]>[%general.PRIORITIES.30%]</option>
+                  <option value="40"[%IF Priority == 40%] selected[%END%]>[%general.PRIORITIES.40%]</option>
+                  <option value="50"[%IF Priority == 50%] selected[%END%]>[%general.PRIORITIES.50%]</option>
+                  <option value="60"[%IF Priority == 60%] selected[%END%]>[%general.PRIORITIES.60%]</option>
+                  </select></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Severity</font> <font class="required">*</font></td>
+                <td width="100%"><select name="FORM_SEVERITY" class="selectbox">
+                [%SET Severity = form.FORM_SEVERITY%]
+                  <option value="30"[%IF Severity == 30%] selected[%END%]>[%general.SEVERITIES.30%]</option>
+                  <option value="40"[%IF Severity == 40%] selected[%END%]>[%general.SEVERITIES.40%]</option>
+                  <option value="50"[%IF Severity == 50%] selected[%END%]>[%general.SEVERITIES.50%]</option>
+                  <option value="60"[%IF Severity == 60%] selected[%END%]>[%general.SEVERITIES.60%]</option>
+                  </select></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Status</font> <font class="required">*</font></td>
+                <td width="100%"><select name="FORM_STATUS" class="selectbox">
+                [%SET Status = form.FORM_STATUS%]
+                  <option value="30"[%IF Status == 30%] selected[%END%]>[%general.STATUS.30%]</option>
+                  <option value="40"[%IF Status == 40%] selected[%END%]>[%general.STATUS.40%]</option>
+                  <option value="50"[%IF Status == 50%] selected[%END%]>[%general.STATUS.50%]</option>
+                  <option value="60"[%IF Status == 60%] selected[%END%]>[%general.STATUS.60%]</option>
+                  <option value="70"[%IF Status == 70%] selected[%END%]>[%general.STATUS.70%]</option>
+                  </select></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Message</font> <font class="required">*</font></td>
+                <td width="100%"><textarea name="FORM_MESSAGE" rows="10" class="textarea">[%form.FORM_MESSAGE%]</textarea></td>
+              </tr>
+            [%IF general.USER_ATTACHMENTS%]
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Attachment</font></td>
+                <td width="100%"><input type="file" name="FORM_ATTACHMENT" class="textbox"></td>
+              </tr>
+            [%END%]
+              <tr>
+                <td width="200" nowrap></td>
+                <td width="100%"><input type="submit" value="Add"> <input type="reset" value="Cancel"></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td></form></td></tr></table>
+[%END%]

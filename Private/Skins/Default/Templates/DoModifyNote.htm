@@ -1,0 +1,66 @@
+[%WRAPPER Interface/Page.htm
+  title = "Modify Note",
+  redirect = "${system.SCRIPT_URL}?action=ModifyTicket&TID=${ticket.ID}&SID=${user.session.ID}"%]
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+  <tr>
+    <td width="100%"><font class="normal"><b><a href="[%system.SCRIPT_URL%]?SID=[%user.session.ID%]" class="normal">Index</a> /
+    [%IF ticket.STATUS >= 60%]
+      <a href="[%system.SCRIPT_URL%]?action=ResolvedTickets&SID=[%user.session.ID%]" class="normal">Resolved Tickets</a> /
+    [%ELSE%]
+      <a href="[%system.SCRIPT_URL%]?SID=[%user.session.ID%]" class="normal">Unresolved Tickets</a> /
+    [%END%]
+      <a href="[%system.SCRIPT_URL%]?action=ModifyTicket&TID=[%ticket.ID%]&SID=[%user.session.ID%]" class="normal">[%ticket.SUBJECT%]</a> /
+      </b></font></td>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="1" width="[%style.TABLE_WIDTH%]" class="border">
+  <tr>
+    <td width="100%">
+      <table border="0" cellpadding="[%style.TABLE_PADD%]" cellspacing="[%style.TABLE_SPAC%]" width="100%">
+        <tr class="large-header">
+          <td width="100%"><font class="large-header">Modify Note</font></td>
+        </tr>
+        <tr class="body">
+          <td width="100%">
+            <table border="0" cellpadding="3" cellspacing="1" width="100%">
+              <tr>
+                <td colspan="2"><font class="body">The following note has been modified:</font></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">ID</font></td>
+                <td width="100%"><font class="textbox">[%note.ID%]</font></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Ticket ID</font></td>
+                <td width="100%"><font class="textbox">[%ticket.ID%]</font></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Subject</font></td>
+                <td width="100%"><font class="textbox">[%record.SUBJECT%]</font></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Message</font></td>
+                <td width="100%"><font class="textarea">[%record.MESSAGE | replace('\n', '<br>')%]</font></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Attachments</font></td>
+                <td width="100%"><font class="textbox">[%record.ATTACHMENTS.split(',').join("<br>")%]</font></td>
+              </tr>
+              <tr>
+                <td colspan="2">&nbsp;</td>
+              </tr>
+              <tr>
+                <td colspan="2"><font class="body"><a href="[%system.SCRIPT_URL%]?action=ModifyTicket&TID=[%ticket.ID%]&SID=[%user.session.ID%]">Back to Ticket</a><br>
+                [%IF ticket.STATUS >= 60%]
+                  <a href="[%system.SCRIPT_URL%]?action=ResolvedTickets&SID=[%user.session.ID%]">Back to Resolved Tickets</a><br>
+                [%END%]
+                  <a href="[%system.SCRIPT_URL%]?SID=[%user.session.ID%]">Back to Index</a></font></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+[%END%]

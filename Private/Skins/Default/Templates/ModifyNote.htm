@@ -1,0 +1,98 @@
+[%WRAPPER Interface/Page.htm
+  title = "Modify Note"%]
+<table border="0" cellpadding="4" cellspacing="1" width="100%">
+  <tr>
+    <td width="100%"><font class="normal"><b><a href="[%system.SCRIPT_URL%]?SID=[%user.session.ID%]" class="normal">Index</a> /
+    [%IF ticket.STATUS >= 60%]
+      <a href="[%system.SCRIPT_URL%]?action=ResolvedTickets&SID=[%user.session.ID%]" class="normal">Resolved Tickets</a> /
+    [%ELSE%]
+      <a href="[%system.SCRIPT_URL%]?SID=[%user.session.ID%]" class="normal">Unresolved Tickets</a> /
+    [%END%]
+      <a href="[%system.SCRIPT_URL%]?action=ModifyTicket&TID=[%ticket.ID%]&SID=[%user.session.ID%]" class="normal">[%ticket.SUBJECT%]</a> /
+      </b></font></td>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="1" width="[%style.TABLE_WIDTH%]" class="border"><form method="POST" name="form" action="[%system.SCRIPT_URL%]" enctype="multipart/form-data"><input type="hidden" name="action" value="DoModifyNote"><input type="hidden" name="NID" value="[%note.ID%]"><input type="hidden" name="SID" value="[%user.session.ID%]">
+  <tr>
+    <td width="100%">
+      <table border="0" cellpadding="[%style.TABLE_PADD%]" cellspacing="[%style.TABLE_SPAC%]" width="100%">
+        <tr class="large-header">
+          <td width="100%"><font class="large-header">Modify Note</font></td>
+        </tr>
+        <tr class="body">
+          <td width="100%">
+            <table border="0" cellpadding="4" cellspacing="1" width="100%">
+              <tr>
+                <td colspan="2"><font class="body">Please fill in all of the required (<font class="required">*</font>) fields.[%IF error%]<p>[%error%][%END%]</font></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">ID</font></td>
+                <td width="100%"><font class="textbox">[%note.ID%]</font></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Ticket ID</font></td>
+                <td width="100%"><font class="textbox">[%ticket.ID%]</font></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Subject</font> <font class="required">*</font></td>
+                <td width="100%"><input type="text" name="FORM_SUBJECT" value="[%form.FORM_SUBJECT || note.SUBJECT%]" class="textbox"></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Message</font> <font class="required">*</font></td>
+                <td width="100%"><textarea name="FORM_MESSAGE" rows="10" class="textarea">[%form.FORM_MESSAGE || note.MESSAGE%]</textarea></td>
+              </tr>
+              <tr>
+                <td width="200" valign="top" nowrap><font class="subject">Attachments</font></td>
+                <td width="100%">
+                  <table cellpadding="0" cellspacing="1" border="0" width="100%" class="border">
+                    <tr>
+                      <td>
+                        <table cellpadding="3" cellspacing="1" border="0" width="100%">
+                          <tr class="small-header">
+                            <td width="1" nowrap><font class="small-header">del</font></td>
+                            <td width="100%"><font class="small-header">file</font></td>
+                          </tr>
+                      [%IF note.ATTACHMENTS%]
+                        [%FOREACH attachment = note.ATTACHMENTS.split(',')%]
+                          <tr class="row">
+                            <td width="1" nowrap><input type="checkbox" name="FORM_ATTACHMENT_DELETE" value="[%attachment%]"></td>
+                            <td width="100%"><font class="row"><a href="[%system.PUBLIC_URL%]/Attachments/[%note.ID%]/[%attachment%]" target="_blank">[%attachment%]</a></font></td>
+                          </tr>
+                        [%END%]
+                      [%ELSE%]
+                          <tr class="row">
+                            <td colspan="2" width="100%"><font class="row">Currently no attachments.</font></td>
+                          </tr>
+                      [%END%]
+                        [%IF general.USER_ATTACHMENTS%]
+                          <tr class="row">
+                            <td colspan="2" width="100%">
+                              <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                <tr>
+                                  <td width="1" nowrap><font class="row">Upload:</font></td>
+                                  <td width="5" nowrap></td>
+                                  <td width="100%"><input type="file" name="FORM_ATTACHMENT_UPLOAD" class="textbox"></td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        [%END%]
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td width="200" nowrap></td>
+                <td width="100%"><input type="submit" value="Modify"> <input type="reset" value="Cancel"></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td></form></td></tr></table>
+[%END%]
